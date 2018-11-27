@@ -1,0 +1,15 @@
+install packages pip , virtualenv , virtualenvwrapper using aptitude
+~/PycharmProjects/VidoAnalysis/venv/bin$ source ~/PycharmProjects/VidoAnalysis/venv/bin/activate
+#to switch to virtual environment
+ django-admin startproject sampleproject
+#to start django project
+~/PycharmProjects/VidoAnalysis/sampleproject$ python manage.py runserver 127.0.0.1:8000
+#to start server
+~/PycharmProjects/VidoAnalysis/sampleproject$ python manage.py migrate
+#to migrate to specified databse in settings.py
+$ python manage.py createsuperuser --username=venky --email=venkatram624@gmail.com
+#to create superuser
+~/PycharmProjects/VidoAnalysis/sampleproject$ python manage.py startapp jangovedioanalyze
+#to start an application
+username:venkatram
+password:asusuald+jango
