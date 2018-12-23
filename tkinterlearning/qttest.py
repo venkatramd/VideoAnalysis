@@ -34,7 +34,7 @@ class Window(QWidget):
 
     def on_button_clicked(self):
         options = QFileDialog.Options()
-        options |= QFileDialog.DontUseNativeDialog
+        options = QFileDialog.DontUseNativeDialog
         fileName, _ = QFileDialog.getOpenFileName(self, "QFileDialog.getOpenFileName()", "",
             "All Files (*);;Python Files (*.py)", options=options)
         if fileName:
