@@ -1,27 +1,47 @@
-import sys
-from PyQt5.QtCore import QSize
-from PyQt5.QtGui import QImage, QPalette, QBrush
+from PyQt5.QtCore import *
+from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
-
-class MainWindow(QWidget):
+import sys
+class Window(QWidget):
     def __init__(self):
-       QWidget.__init__(self)
-       self.setGeometry(100,100,600,900)
+        QWidget.__init__(self)
 
-       oImage = QImage("venky2.png")
-       sImage = oImage.scaled(QSize(300,900))                   # resize Image to widgets size
-       palette = QPalette()
-       palette.setBrush(10, QBrush(sImage))                     # 10 = Windowrole
-       self.setPalette(palette)
+        layout = QBoxLayout(QBoxLayout.TopToBottom)
+        self.setLayout(layout)
 
-       self.label = QLabel('Test', self)                        # test, if it's really backgroundimage
-       self.label.setGeometry(50,50,200,50)
+        self.label = QLabel()
+        self.label.setText("Click on the below button to select a video")
+        self.label.move(30,30)
+        self.label.setAlignment(Qt.AlignTop)
+        layout.addWidget(self.label)
 
-       self.show()
+        groupbox = QGroupBox("thusadabfk cn jdanfkja ")
+        groupbox.setLayout(layout)
 
-if __name__ == "__main__":
+        self.button = QPushButton("Select  a  Video")
+        self.button.clicked.connect(self.on_button_clicked)
+        self.button.move(450,350)
+        self.button.resize(45,45)
+        layout.addWidget(self.button)
 
-    app = QApplication(sys.argv)
-    oMainwindow = MainWindow()
-    oMainwindow.showMaximized()
-    sys.exit(app.exec_())
+
+        oImage = QImage("bbb.jpg")
+        sImage = oImage.scaled(QSize(1300,780))
+        palette = QPalette()
+        palette.setBrush(10, QBrush(sImage))  # 10 = Windowrole
+        self.setPalette(palette)
+        self.show()
+
+    def on_button_clicked(self):
+        options = QFileDialog.Options()
+        options |= QFileDialog.DontUseNativeDialog
+        fileName, _ = QFileDialog.getOpenFileName(self, "QFileDialog.getOpenFileName()", "",
+            "All Files (*);;Python Files (*.py)", options=options)
+        if fileName:
+            print(fileName)
+
+
+app = QApplication(sys.argv)
+screen = Window()
+screen.showMaximized()
+sys.exit(app.exec_())
